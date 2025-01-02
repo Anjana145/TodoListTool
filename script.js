@@ -1,4 +1,3 @@
-
 const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
@@ -7,6 +6,7 @@ const prioritySelect = document.getElementById('priority');
 const searchInput = document.getElementById('search');
 const statsDiv = document.getElementById('stats');
 const currentViewTitle = document.getElementById('current-view');
+const statsButton = document.getElementById('statsButton');
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let currentFilter = 'all';
@@ -91,6 +91,17 @@ function setFilter(filter) {
     currentFilter = filter;
     currentViewTitle.textContent = `${filter.charAt(0).toUpperCase() + filter.slice(1)} Tasks`;
     renderTodos();
+}
+
+function toggleStats() {
+    const statsDiv = document.getElementById('stats');
+    if (statsDiv.classList.contains('hidden')) {
+        statsDiv.classList.remove('hidden');
+        statsButton.textContent = 'Hide Statistics';
+    } else {
+        statsDiv.classList.add('hidden');
+        statsButton.textContent = 'Show Statistics';
+    }
 }
 
 todoForm.addEventListener('submit', (e) => {
